@@ -128,7 +128,13 @@ class ViewController: UIViewController {
         setupUI()
         setupConstraints()
         setupActions()
-        setupGame()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if gameScene == nil {
+            setupGame()
+        }
     }
     
     // MARK: - Setup Methods
@@ -218,6 +224,7 @@ class ViewController: UIViewController {
     }
     
     private func setupGame() {
+        guard gameView.bounds.width > 0 else { return }
         gameScene = TankGameScene(size: gameView.bounds.size)
         gameScene.scaleMode = .aspectFill
         gameScene.gameDelegate = self

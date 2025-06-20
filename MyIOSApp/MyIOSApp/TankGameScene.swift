@@ -127,6 +127,9 @@ class TankGameScene: SKScene, SKPhysicsContactDelegate {
     private func spawnEnemy() {
         guard enemies.count < 5 else { return }
         
+        // Add a guard to ensure the screen width is sufficient
+        guard size.width > 100 else { return }
+
         let enemy = SKSpriteNode(color: .red, size: CGSize(width: 25, height: 25))
         let randomX = CGFloat.random(in: 50...(size.width - 50))
         enemy.position = CGPoint(x: randomX, y: size.height - 50)
